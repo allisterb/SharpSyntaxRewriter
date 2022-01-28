@@ -32,7 +32,7 @@ namespace SharpSyntaxRewriter.Rewriters
                     expr is ThrowExpressionSyntax throwExpr
                         ? SyntaxFactory.ThrowStatement(throwExpr.Expression)
                         : withValuedRet
-                            ? SyntaxFactory.ReturnStatement(expr.WithoutTrivia())
+                            ? SyntaxFactory.ReturnStatement(expr.WithoutTrivia().WithLeadingTrivia(SyntaxFactory.Space)) //TaSyntaxKind.WhitespaceTrivia, " "))
                             : SyntaxFactory.ExpressionStatement(expr.WithoutTrivia()));
 
             blockNode = blockNode

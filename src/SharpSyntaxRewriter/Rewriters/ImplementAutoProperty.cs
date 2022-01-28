@@ -210,7 +210,7 @@ namespace SharpSyntaxRewriter.Rewriters
                                 SyntaxKind.GetAccessorDeclaration,
                                 SyntaxFactory.Block(
                                     SyntaxFactory.ReturnStatement(
-                                        SyntaxFactory.IdentifierName(fldName))));
+                                        SyntaxFactory.IdentifierName(fldName).WithLeadingTrivia(SyntaxFactory.Space))));
                         break;
 
                     case SyntaxKind.SetAccessorDeclaration:
