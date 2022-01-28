@@ -26,7 +26,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Rewriters\" />
     <Folder Include="Extensions\" />
     <Folder Include="Constants\" />
     <Folder Include="Rewriters\Helpers\" />
