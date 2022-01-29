@@ -103,7 +103,7 @@ namespace SharpSyntaxRewriter.Rewriters
             {
                 // There must exist a user-defined conversion.
                 var tySym = _semaModel.GetTypeInfo(node).Type;
-                if (tySym.SpecialType == SpecialType.System_String)
+                if (tySym != null && tySym.SpecialType == SpecialType.System_String)
                     callExpr = Invocation(ResultTypeName.String, fmtArgs);
                 else
                     callExpr = Invocation(ResultTypeName.FormattableString, fmtArgs);
