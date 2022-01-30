@@ -36,6 +36,7 @@ namespace SharpSyntaxRewriter.Rewriters
             switch (resTyName)
             {
                 case ResultTypeName.String:
+                case ResultTypeName.FormattableString:
                     fmtFunc =
                         SyntaxFactory.MemberAccessExpression(
                             SyntaxKind.SimpleMemberAccessExpression,
@@ -43,6 +44,7 @@ namespace SharpSyntaxRewriter.Rewriters
                             SyntaxFactory.IdentifierName("Format"));
                     break;
 
+                /*
                 case ResultTypeName.FormattableString:
                     fmtFunc =
                         SyntaxFactory.MemberAccessExpression(
@@ -59,6 +61,7 @@ namespace SharpSyntaxRewriter.Rewriters
                                 SyntaxFactory.IdentifierName("FormattableStringFactory")),
                             SyntaxFactory.IdentifierName("Create"));
                     break;
+                */
 
                 default:
                     Debug.Fail("unhandled");
