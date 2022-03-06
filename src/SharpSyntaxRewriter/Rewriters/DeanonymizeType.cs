@@ -26,7 +26,7 @@ namespace SharpSyntaxRewriter.Rewriters
 
         private static readonly ConcurrentDictionary<string, int> __deanonIDs = new();
 
-        private readonly Dictionary<ITypeSymbol, string> __deanonTyNames = new();
+        private readonly Dictionary<ITypeSymbol, string> __deanonTyNames = new (comparer: SymbolEqualityComparer.Default);
 
         public override void Reset()
         {

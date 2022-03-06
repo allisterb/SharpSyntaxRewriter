@@ -5,7 +5,7 @@ using Microsoft.CodeAnalysis;
 
 namespace SharpSyntaxRewriter.Utilities
 {
-    public class FullNameMatcher
+    public static class FullNameMatcher
     {
         private static bool CompareFullName_IgnoreGeneric(ISymbol sym, string[] names)
         {
@@ -26,9 +26,10 @@ namespace SharpSyntaxRewriter.Utilities
         {
             // From https://github.com/dotnet/roslyn/blob/b796152aff3a7f872bd70db26cc9f568bbdb14cc/src/Compilers/CSharp/Portable/Symbols/TypeSymbolExtensions.cs#L398
 
+            if (tySym is null) throw new System.ArgumentNullException(nameof(tySym));
             if (tySym.OriginalDefinition is INamedTypeSymbol namedTySym
                     && namedTySym.Name == name
-                    && CompareFullName_IgnoreGeneric(namedTySym.ContainingSymbol, nsNames))
+                    && CompareFullName_IgnoreGeneric(namedTySym.ContainingSymbol, nsNames ?? throw new System.ArgumentNullException(nameof(nsNames))))
             {
                 return true;
             }
