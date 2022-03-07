@@ -23,9 +23,24 @@ namespace SharpSyntaxRewriter.Rewriters
             return ID;
         }
 
-        public override SyntaxNode VisitVariableDeclarator(VariableDeclaratorSyntax node)
+        public override SyntaxNode VisitVariableDeclaration(VariableDeclarationSyntax node)
         {
-            return base.VisitVariableDeclarator(node);
+            if (node.Type.ToString() != "var") return base.VisitVariableDeclaration(node);
+            
+            //var vt = node.Variables.First().Initializer;
+            var s = _semaModel.GetSymbolInfo(node.Type);
+            //SyntaxFactory.TypeDeclaration(SyntaxKind.ty)
+            //return SyntaxFactory.VariableDeclaration(type: SyntaxFactory.t(s.Symbol.ToDisplayString()), node.Variables);
+
+            return SyntaxFactory.VariableDeclaration(
+        type: SyntaxFactory.IdentifierName(s.Symbol.ToDisplayString()),
+        variables: node.Variables);
+         //   Syntax.VariableDeclarator(
+         //       identifier: Syntax.Identifier(name)))))
+            //return base.VisitVariableDeclaration(node);
         }
+
+        
+
     }
 }
